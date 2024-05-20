@@ -30,7 +30,7 @@
             font-size: 1rem;
         }
         section.hero {
-            padding: 150px 0;
+            padding: 125px 0;
         }
 
         .text-label,
@@ -46,7 +46,7 @@
         }
 
         .text-hero-bold {
-            font-size: 48px;
+            font-size: 45px;
             font-weight: var(--font-weight-bold);
             line-height: 74px;
         }
@@ -92,7 +92,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item {{ request()->route()->named('home') ? 'active' : '' }}">
                             <a class="nav-link {{ request()->route()->named('home') ? 'active' : '' }}" aria-current="page"
-                                href="/">Home</a>
+                                href="/">Beranda</a>
                         </li>
                         <li class="nav-item {{ request()->route()->named('triage.*') ? 'active' : '' }}">
                             <a class="nav-link {{ request()->route()->named('triage.*') ? 'active' : '' }}"
