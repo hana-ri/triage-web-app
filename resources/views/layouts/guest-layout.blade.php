@@ -14,27 +14,74 @@
         @import url('https://rsms.me/inter/inter.css');
 
         :root {
-            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+            --tblr-font-sans-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
         }
 
         body {
             font-feature-settings: "cv03", "cv04", "cv11";
+        }
+
+        .navbar-brand-image {
+            height: 3rem;
+            width: auto;
+        }
+
+        .nav-link {
+            font-size: 1rem;
+        }
+        section.hero {
+            padding: 150px 0;
+        }
+
+        .text-label,
+        .text-hero-bold,
+        .text-hero-regular {
+            margin: 24px 0;
+        }
+
+        .text-label {
+            font-size: var(--text-regular);
+            font-weight: var(--font-weight-regular);
+            line-height: 28px;
+        }
+
+        .text-hero-bold {
+            font-size: 48px;
+            font-weight: var(--font-weight-bold);
+            line-height: 74px;
+        }
+
+        .text-hero-regular {
+            font-size: var(--text-regular);
+            font-weight: var(--font-weight-regular);
+            line-height: 31px;
+        }
+
+        .cta .btn {
+            font-size: 16px;
+            font-weight: var(--font-weight-bold);
+            line-height: 25px;
+            border-radius: 7px;
+        }
+
+        .triage-body {
+            padding: 65px 0;
         }
     </style>
 </head>
 
 <body>
     <div class="page">
-        <nav class="navbar navbar-expand-lg bg-white shadow">
+        <nav class="navbar navbar-expand-lg fixed-top bg-white shadow">
             <div class="container-xl">
                 <div class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                    <a href="." class="h1 m-0">
-                        <img src="{{ asset('assets/images/logo_upi.png') }}" width="165" height="48" alt="Tabler"
-                            class="navbar-brand-image">
-                        <img src="{{ asset('assets/images/logo_tekkom.png') }}" width="165" height="48" alt="Tabler"
-                            class="navbar-brand-image">
+                    <a href="{{ route('home') }}" class="h1 m-0">
+                        <img src="{{ asset('assets/images/logo_upi.png') }}" width="165" height="48"
+                            alt="Tabler" class="navbar-brand-image">
+                        <img src="{{ asset('assets/images/logo_tekkom.png') }}" width="165" height="48"
+                            alt="Tabler" class="navbar-brand-image">
                     </a>
-                    <h1 class="d-flex m-0 text-primary">E-Triage</h1>
+                    {{-- <h1 class="d-flex m-0 text-primary">E-Triase</h1> --}}
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -43,15 +90,17 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <li class="nav-item {{ request()->route()->named('home') ? 'active' : '' }}">
+                            <a class="nav-link {{ request()->route()->named('home') ? 'active' : '' }}" aria-current="page"
+                                href="/">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Triage</a>
+                        <li class="nav-item {{ request()->route()->named('triage.*') ? 'active' : '' }}">
+                            <a class="nav-link {{ request()->route()->named('triage.*') ? 'active' : '' }}"
+                                href="{{ route('triage.step.one') }}">Triase</a>
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <button class="btn btn-outline-primary" type="submit">Login</button>
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary" type="submit">Login</a>
                     </div>
                 </div>
             </div>

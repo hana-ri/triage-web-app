@@ -1,5 +1,6 @@
 <x-guest-layout>
-    <div class="page-body">
+    <x-slot:title>Step 1</x-slot:title>
+    <div class="page-body triage-body">
         <div class="container-xl">
             <div class="row">
                 <div class="col-12">
@@ -12,11 +13,11 @@
                             </ul>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('triage.step.one') }}" method="post">
+                            <form action="{{ route('triage.step.one.process') }}" method="post">
                                 @csrf
                                 @method('POST')
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Nama</label>
+                                    <label class="col-3 col-form-label required">Nama pasien</label>
                                     <div class="col">
                                         <input type="text" name="name" class="form-control" placeholder="Jhon doe">
                                     </div>

@@ -44,9 +44,9 @@
                 <li class="nav-item {{ request()->route()->named('admin.dashboard') ? 'active' : '' }}">
                     <a class="nav-link {{ request()->route()->named('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <i class="ti ti-home fs-2"></i>
+                            <i class="ti ti-emergency-bed fs-2"></i>
                         </span>
-                        <span class="nav-link-title"> Home</span>
+                        <span class="nav-link-title"> Triage</span>
                     </a>
                 </li>
                 <li class="nav-item {{ request()->route()->named('admin.users.index') ? 'active' : '' }}">

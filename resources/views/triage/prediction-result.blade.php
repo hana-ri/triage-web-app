@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="page-body">
+    <div class="page-body triage-body">
         <div class="container-xl">
             <div class="row">
                 <div class="col-12">

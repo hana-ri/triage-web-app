@@ -18,16 +18,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::prefix('/triage')
+    ->name('triage.')
     ->controller(TriageController::class)
     ->group(function () {
-        Route::get('/step/1', 'triageStepOne')->name('triage.step.one');
-        Route::post('/step/1', 'createTriageStepOne')->name('create.triage.step.one');
-        Route::get('/step/2', 'triageStepTwo')->name('triage.step.two');
-        Route::post('/step/2', 'createTriageStepTwo')->name('create.triage.step.two');
-        Route::get('/result', 'predictionResult')->name('triage.result');
+        Route::get('/step/1', 'triageStepOne')->name('step.one');
+        Route::post('/step/1', 'triageStepOneProcess')->name('step.one.process');
+        Route::get('/step/2', 'triageStepTwo')->name('step.two');
+        Route::post('/step/2', 'triageStepTwoProcess')->name('step.two.process');
+        Route::get('/result', 'triagePredictionResult')->name('prediction.result');
 });
 /*
 |--------------------------------------------------------------------------

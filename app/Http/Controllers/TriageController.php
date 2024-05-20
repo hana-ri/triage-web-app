@@ -7,16 +7,17 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Mockery\Matcher\Any;
 
 class TriageController extends Controller
 {
-    public function triageStepOne(): View
+    public function triageStepOne(Request $request): View
     {
+        $request->session()->forget('triage');
+
         return view('triage.step-one');
     }
 
-    public function createTriageStepOne(Request $request)
+    public function triageStepOneProcess(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required',
@@ -46,7 +47,7 @@ class TriageController extends Controller
         return view('triage.step-two');
     }
 
-    public function createTriageStepTwo(Request $request)
+    public function triageStepTwoProcess(Request $request)
     {
         $validatedData = $request->validate([
             "sbp" => "required",
@@ -61,7 +62,6 @@ class TriageController extends Controller
             "pain" => "required",
             "nrs_pain" => "required"
         ]);
-        // dd($validatedData);
 
         $triage = $request->session()->get('triage');
 
@@ -72,10 +72,10 @@ class TriageController extends Controller
         $result = $this->predictTriage($triage);
         $request->session()->forget('triage');
 
-        return redirect()->route('triage.result')->with('result', $result);
+        return redirect()->route('triage.prediction.result')->with('result', $result);
     }
 
-    public function predictionResult(Request $request)
+    public function triagePredictionResult(Request $request)
     {
         if (!session('result')) {
             $request->session()->forget('triage');
@@ -94,7 +94,7 @@ class TriageController extends Controller
 
         // Susun data sesuai dengan format yang diinginkan
         $data = [
-            "Patients number per hour" => [6],
+            "Patients number per hour" => [5],
             "Age" => [(int)$attributes['age']],
             "NRS_pain" => [(int)$attributes['nrs_pain'] ?? 0],
             "SBP" => [(int)$attributes['sbp']],
