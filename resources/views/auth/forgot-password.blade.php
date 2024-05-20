@@ -21,9 +21,9 @@
             </button>
         </div>
     </form>
-    <div class="text-center text-secondary mt-3">
+    {{-- <div class="text-center text-secondary mt-3">
         Don't have account yet? <a href="{{ route('register') }}" tabindex="-1">Sign up</a>
-    </div>
+    </div> --}}
     <div class="text-center text-secondary mt-3">
         <a href="{{ route('login') }}" tabindex="-1">Back to login</a>
     </div>

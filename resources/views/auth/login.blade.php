@@ -44,7 +44,7 @@
             <button type="submit" class="btn btn-primary w-100">Login</button>
         </div>
     </form>
-    <div class="text-center text-secondary mt-3">
+    {{-- <div class="text-center text-secondary mt-3">
         Don't have account yet? <a href="{{ route('register') }}" tabindex="-1">Sign up</a>
-    </div>
+    </div> --}}
 </x-auth-layout>

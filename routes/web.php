@@ -41,8 +41,8 @@ Route::prefix('auth')->group(function () {
         Route::get('login', [LoginRegisterController::class, 'loginView'])->name('login');
         Route::post('login', [LoginRegisterController::class, 'login'])->name('authenticate');
 
-        Route::get('register', [LoginRegisterController::class, 'registerView'])->name('register');
-        Route::post('register', [LoginRegisterController::class, 'register'])->name('registering');
+        // Route::get('register', [LoginRegisterController::class, 'registerView'])->name('register');
+        // Route::post('register', [LoginRegisterController::class, 'register'])->name('registering');
 
         Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
         Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');

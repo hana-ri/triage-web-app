@@ -5,8 +5,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
-            <a href="#">
-                <img src="{{ asset('assets/images/logo.svg') }}" width="110" height="32" alt="Logo"
+            <a href="{{ route('admin.dashboard') }}">
+                <img src="{{ asset('assets/images/logo_upi.png') }}" width="165" height="48" alt="Tabler"
+                    class="navbar-brand-image">
+                <img src="{{ asset('assets/images/logo_tekkom_2.png') }}" width="165" height="48" alt="Tabler"
                     class="navbar-brand-image">
             </a>
         </h1>
@@ -25,12 +27,12 @@
                     <a href="{{ route('admin.users.profile.edit') }}" class="dropdown-item">Profile</a>
                     <div class="dropdown-divider"></div>
                     <div class="d-md-flex d-lg-none">
-                        <a href="#" class="dropdown-item hide-theme-dark toggleTheme" title="Enable dark mode" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom">
+                        <a href="#" class="dropdown-item hide-theme-dark toggleTheme" title="Enable dark mode"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <span class="me-1">Dark Mode</span> <i class="ti ti-moon fs-5"></i>
                         </a>
-                        <a href="#" class="dropdown-item hide-theme-light toggleTheme" title="Enable light mode" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom">
+                        <a href="#" class="dropdown-item hide-theme-light toggleTheme" title="Enable light mode"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <span class="me-1">Light Mode</span> <i class="ti ti-sun fs-5"></i>
                         </a>
                     </div>
@@ -42,7 +44,8 @@
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
                 <li class="nav-item {{ request()->route()->named('admin.dashboard') ? 'active' : '' }}">
-                    <a class="nav-link {{ request()->route()->named('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                    <a class="nav-link {{ request()->route()->named('admin.dashboard') ? 'active' : '' }}"
+                        href="{{ route('admin.dashboard') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <i class="ti ti-emergency-bed fs-2"></i>
                         </span>
@@ -50,7 +53,8 @@
                     </a>
                 </li>
                 <li class="nav-item {{ request()->route()->named('admin.users.index') ? 'active' : '' }}">
-                    <a class="nav-link {{ request()->route()->named('admin.users.index') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
+                    <a class="nav-link {{ request()->route()->named('admin.users.index') ? 'active' : '' }}"
+                        href="{{ route('admin.users.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <i class="ti ti-user fs-2"></i>
                         </span>

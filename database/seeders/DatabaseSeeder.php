@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(5)->unverified()->create();
 
         $user = \App\Models\User::factory()->create([
-            'name' => 'Montir Web',
-            'email' => 'admin@montirweb.com',
+            'name' => 'Mohamad Rizal Hanafi',
+            'email' => 'hanari@upi.edu',
             'password' => bcrypt('Ggwp2001'),
         ]);
 
