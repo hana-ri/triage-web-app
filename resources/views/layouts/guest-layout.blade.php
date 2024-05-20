@@ -40,7 +40,7 @@
         }
 
         .text-label {
-            font-size: var(--text-regular);
+            font-size: 16px;
             font-weight: var(--font-weight-regular);
             line-height: 28px;
         }
@@ -52,7 +52,7 @@
         }
 
         .text-hero-regular {
-            font-size: var(--text-regular);
+            font-size: 16px;
             font-weight: var(--font-weight-regular);
             line-height: 31px;
         }

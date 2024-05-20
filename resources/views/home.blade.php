@@ -7,11 +7,9 @@
                         <div class="text-label text-secondary">Montir Web digitalisasi bisnis Anda ke dalam sebuah
                             website</div>
                         <div class="text-hero-bold text-primary">Sistem Klasifikasi Pasien untuk Gawat Darurat</div>
-                        <div class="text-hero-regular text-secondary">Berdasarkan penelitian kehadiran sebuah website
-                            dapat
-                            memiliki dampak dalam mempengaruhi keputusan pembelian pelanggan!</div>
+                        <div class="text-hero-regular text-secondary">Sistem triase tidak sesederhana sistem antrian (<p class="fst-italic d-inline">first come first serve</p>), tapi ini diperlukan untuk memperlakukan pasien secara adil sesuai dengan gejala yang dialami pasien.</div>
                         <div class="cta">
-                            <a href="{{ route('triage.step.one') }}" class="btn btn-primary">Lakukan triase!</a>
+                            <a href="{{ route('triage.step.one') }}" class="btn btn-primary">Demo</a>
                         </div>
                     </div>
                 </div>
