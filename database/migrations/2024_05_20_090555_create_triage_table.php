@@ -13,22 +13,23 @@ return new class extends Migration
     {
         Schema::create('triage', function (Blueprint $table) {
             $table->id();
-            $table->enum('hospital_type', ['local', 'regional']);
-            $table->string('fullname', 255);
+            $table->string('name', 255);
             $table->integer('age');
             $table->enum('gender', ['male', 'female']);
-            $table->decimal('SBP', 8, 2);
-            $table->decimal('DBP', 8, 2);
-            $table->decimal('HR', 8, 2);
-            $table->decimal('RR', 8, 2);
-            $table->decimal('BT', 8, 2);
-            $table->decimal('Saturation', 8, 2);
-            $table->enum('arrival_mode', ['public ambulance', 'private ambulance', 'private vehicle', 'walking']);
+            $table->integer('patients_number_per_hour');
+            $table->enum('hospital_type', ['local', 'regional']);
+            $table->decimal('sbp', 8, 2);
+            $table->decimal('dbp', 8, 2);
+            $table->decimal('hr', 8, 2);
+            $table->decimal('rr', 8, 2);
+            $table->decimal('bt', 8, 2);
+            $table->decimal('saturation', 8, 2);
+            $table->enum('arrival_mode', ['public ambulance', 'private ambulance', 'private vehicle', 'walking', 'other']);
             $table->boolean('injury');
             $table->enum('AVPU_scale', ['alert', 'verbal responsive', 'painfully responsive', 'unresponsive']);
             $table->boolean('is_pain');
-            $table->integer('pain_scale');
-            $table->integer('prediction_level');
+            $table->integer('nrs_pain');
+            $table->string('prediction_level');
             $table->timestamps();
         });
     }

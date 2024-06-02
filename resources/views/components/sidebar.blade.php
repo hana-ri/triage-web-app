@@ -70,6 +70,15 @@
                         <span class="nav-link-title"> Roles & permissions</span>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->route()->named('admin.settings.index') ? 'active' : '' }}">
+                    <a class="nav-link {{ request()->route()->named('admin.settings.index') ? 'active' : '' }}"
+                        href="{{ route('admin.settings.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-settings fs-2"></i>
+                        </span>
+                        <span class="nav-link-title"> Setting</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -100,7 +100,11 @@
                         </li>
                     </ul>
                     <div class="d-flex">
+                        @if (!Auth::guest())
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-primary" type="submit">Dashboard</a>
+                        @else
                         <a href="{{ route('login') }}" class="btn btn-outline-primary" type="submit">Login</a>
+                        @endif
                     </div>
                 </div>
             </div>

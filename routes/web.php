@@ -6,6 +6,7 @@ use App\Http\Controllers\auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesAndPermissionsController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TriageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -83,9 +84,7 @@ Route::prefix('admin')
             });
 
             Route::middleware(App\Http\Middleware\Permission::class)->group(function () {
-                Route::get('dashboard', function () {
-                    return view('admin.dashboard');
-                })->name('dashboard');
+                Route::get('dashboard', [TriageController::class, 'index'])->name('dashboard');
 
                 Route::resource('users', UserController::class)->except(['create', 'edit']);
 
@@ -95,6 +94,11 @@ Route::prefix('admin')
                     Route::post('role', 'store')->name('roles.store');
                     Route::put('role/{role}', 'update')->name('roles.update');
                     Route::delete('role/{role}', 'destroy')->name('roles.delete');
+                });
+
+                Route::controller(SettingController::class)->group(function () {
+                    Route::get('setting', 'index')->name('settings.index');
+                    Route::post('setting', 'updateOrCreateSetting')->name('settings.updateOrCreate');
                 });
             });
         });

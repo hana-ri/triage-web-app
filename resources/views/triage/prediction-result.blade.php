@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-slot:title>Prediction result</x-slot:title>
     <div class="page-body triage-body">
         <div class="container-xl">
             <div class="row">
@@ -48,7 +49,7 @@
                                 </div>
                             </div>
                             <h2 class="text-center mt-3">Mengapa harus ada triase?</h2>
-                            <p class="text-secondary text-center">Sistem triase bisa jadi menyusahkan, tapi ini diperlukan untuk memperlakukan pasien secara adil.</p>
+                            <p class="text-secondary text-center">Mungkin sistem triase tidak sesederhana sistem antrian (first come first serve), tapi ini diperlukan ketika IGD untuk memperlakukan pasien secara adil sesuai dengan gejala yang dialami pasien.</p>
                             <a href="{{ route('triage.step.one') }}">Lakukan triase kembali</a>
                         </div>
                     </div>

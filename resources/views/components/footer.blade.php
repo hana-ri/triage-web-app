@@ -4,9 +4,9 @@
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
-                        <a href="." class="link-secondary">Mohamad Rizal Hanafi</a>
+                        <a href="." class="link-secondary">Sistem Klasifikasi Level Triase</a>
                         |
-                        <a href="." class="link-secondary">Teknik Komputer - UPI Cibiru</a>.
+                        <a href="." class="link-secondary">Teknik Komputer - Kampus UPI di Cibiru</a>.
                     </li>
                 </ul>
             </div>
