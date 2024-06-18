@@ -29,7 +29,10 @@
             <div class="container container-tight my-5 px-lg-5">
                 <div class="text-center mb-4">
                     <a href="/" class="navbar-brand navbar-brand-autodark">
-                        <img src="{{ asset('assets/images/logo.svg') }}" height="36" alt="">
+                        <img src="{{ asset('assets/images/logo_upi.png') }}" width="165" height="48"
+                            alt="Tabler" class="navbar-brand-image">
+                        <img src="{{ asset('assets/images/logo_tekkom.png') }}" width="165" height="48"
+                            alt="Tabler" class="navbar-brand-image">
                     </a>
                 </div>
                 {{ $slot }}
@@ -38,7 +41,7 @@
         <div class="col-12 col-lg-6 col-xl-8 d-none d-lg-block">
             <!-- Photo -->
             <div class="bg-cover h-100 min-vh-100"
-                style="background-image: url({{ asset('assets/images/finances-us-dollars-and-bitcoins-currency-money-2.jpg') }})">
+                style="background-image: url({{ asset('assets/images/lab_upi.png') }})">
             </div>
         </div>
     </div>

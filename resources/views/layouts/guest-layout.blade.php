@@ -68,6 +68,7 @@
             padding: 65px 0;
         }
     </style>
+    @stack('styles')
 </head>
 
 <body>
@@ -96,7 +97,7 @@
                         </li>
                         <li class="nav-item {{ request()->route()->named('triage.*') ? 'active' : '' }}">
                             <a class="nav-link {{ request()->route()->named('triage.*') ? 'active' : '' }}"
-                                href="{{ route('triage.step.one') }}">Triase</a>
+                                href="{{ route('triage.step.one') }}">Demo Triase</a>
                         </li>
                     </ul>
                     <div class="d-flex">

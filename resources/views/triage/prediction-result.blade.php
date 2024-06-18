@@ -16,25 +16,25 @@
                             {{-- <h2 class="text-center mt-3 text-blue">Hasil prediksi</h2> --}}
                             <div class="d-flex justify-content-center">
                                 @php
-                                    if ($data['result'] === 'Level 1') {
+                                    if ($data['result'] == '1.0') {
                                         $flag = 'danger';
-                                        $triageTitle = 'Resuscitation';
+                                        $triageTitle = 'Resusitasi';
                                         $triageMessage = 'Kondisi medis yang mengancam jiwa diharapkan segera mendapat penanganan.';
-                                    } elseif ($data['result'] === 'Level 2') {
+                                    } elseif ($data['result'] == '2.0') {
                                         $flag = 'warning';
-                                        $triageTitle = 'Emergent';
+                                        $triageTitle = 'Emergensi';
                                         $triageMessage = 'Kondisi medis yang serius diharapkan mendapatkan penanganan setelah pasien yang berwarna triase level 1 distabilkan.';
-                                    } elseif ($data['result'] === 'Level 3') {
+                                    } elseif ($data['result'] == '3.0') {
                                         $flag = 'yellow';
-                                        $triageTitle = 'Urgent';
+                                        $triageTitle = 'Urgensi';
                                         $triageMessage = 'Kondisi medis yang serius diharapkan mendapatkan penanganan setelah pasien yang berwarna triase level 2 distabilkan.';
-                                    } elseif ($data['result'] === 'Level 4') {
+                                    } elseif ($data['result'] == '4.0') {
                                         $flag = 'success';
-                                        $triageTitle = 'Less urgent';
+                                        $triageTitle = 'Kurang Urgensi';
                                         $triageMessage = 'Pasien dengan kondisi yang tidak mendesak yang mungkin membutuhkan perawatan, tetapi dapat menunggu lebih lama daripada pasien dengan triase level 3.';
                                     } else {
                                         $flag = 'blue';
-                                        $triageTitle = 'Non-urgent';
+                                        $triageTitle = 'Tidak Urgensi';
                                         $triageMessage = 'Pasien dengan kondisi non-urgent atau minor yang membutuhkan perawatan minimal dan bisa menunggu perawatan untuk jangka waktu yang lebih lama daripada pasien di tingkat lain.';
                                     }
                                 @endphp

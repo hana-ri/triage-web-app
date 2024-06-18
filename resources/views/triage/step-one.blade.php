@@ -19,21 +19,21 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Nama pasien</label>
                                     <div class="col">
-                                        <input type="text" name="name" class="form-control" placeholder="Jhon doe">
+                                        <input type="text" name="name" class="form-control" placeholder="Jhon doe" value="{{ old('name', session()->get('triage')->name ?? '') }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Umur</label>
                                     <div class="col">
-                                        <input type="number" name="age" class="form-control" placeholder="30">
+                                        <input type="number" name="age" class="form-control" placeholder="30" value="{{ old('age', session()->get('triage')->age ?? '') }}">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Jenis Kelamin</label>
                                     <div class="col">
                                         <select name="gender" class="form-select">
-                                            <option value="male">Laki-Laki</option>
-                                            <option value="female">Perempuan</option>
+                                            <option value="male" @selected(old('gender', session()->get('triage')->gender ?? '') == 'male')>Laki-Laki</option>
+                                            <option value="female" @selected(old('gender', session()->get('triage')->gender ?? '') == 'female')>Perempuan</option>
                                         </select>
                                     </div>
                                 </div>

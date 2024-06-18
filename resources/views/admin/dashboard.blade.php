@@ -1,7 +1,17 @@
 <x-app-layout>
     <x-slot:title>Dashboard</x-slot:title>
     <div class="page-wrapper">
-        <x-page-header title="Dashboard" />
+        <x-page-header title="Triase">
+            <div class="btn-list">
+                <a href="#" class="btn btn-primary d-none d-sm-inline-block">
+                    <i class="ti ti-plus fs-3"></i>
+                    Triase
+                </a>
+                <a href="#" class="btn btn-primary d-sm-none btn-icon">
+                    <i class="ti ti-plus fs-3"></i>
+                </a>
+            </div>
+        </x-page-header>
         <x-page-body>
             <div class="row">
                 <div class="col-12">
@@ -21,12 +31,11 @@
                                             <th>RR</th>
                                             <th>BT</th>
                                             <th>Saturation</th>
-                                            <th>Tiba dengan</th>
-                                            <th>Cedera?</th>
-                                            <th>AVPU Scale</th>
-                                            <th>Nyeri</th>
-                                            <th>Scala Nyeri</th>
-                                            <th>Prediksi Triase</th>
+                                            <th>Perangkat O2</th>
+                                            <th>Keluhan Utama</th>
+                                            <th>Prediksi</th>
+                                            <th>Validasi</th>
+                                            <th>Tanggal</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

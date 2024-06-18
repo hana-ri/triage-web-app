@@ -76,7 +76,7 @@ Route::controller(VerificationController::class)->middleware('auth')->group(func
 Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
-        Route::middleware(['auth', 'verified'])->group(function () {
+        Route::middleware(['auth'])->group(function () {
             Route::controller(ProfileController::class)->group(function () {
                 Route::get('profile', 'myprofile')->name('users.profile.edit');
                 Route::patch('profile', 'updateProfile')->name('users.profile.update');

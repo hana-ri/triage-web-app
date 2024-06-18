@@ -10,14 +10,14 @@ class UserObserver
     public function creating(User $user): void
     {
         $user->id = Str::uuid();
-        $user->sendEmailVerificationNotification();
+        // $user->sendEmailVerificationNotification();
     }
 
     public function updating(User $user) : void {
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-            $user->sendEmailVerificationNotification();
-        }
+        // if ($user->isDirty('email')) {
+        //     $user->email_verified_at = null;
+        //     $user->sendEmailVerificationNotification();
+        // }
     }
     /**
      * Handle the User "created" event.

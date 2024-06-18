@@ -4,9 +4,9 @@
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
-                        <a href="." class="link-secondary">Sistem Klasifikasi Level Triase</a>
+                        <a href="#" class="link-secondary">Sistem Klasifikasi Level Triase</a>
                         |
-                        <a href="." class="link-secondary">Teknik Komputer - Kampus UPI di Cibiru</a>.
+                        <a href="https://tekkom.upi.edu" class="link-secondary">Teknik Komputer - Universitas Pendidikan Indonesia</a>.
                     </li>
                 </ul>
             </div>
