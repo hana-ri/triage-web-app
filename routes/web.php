@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminTriageController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\auth\NewPasswordController;
 use App\Http\Controllers\auth\PasswordResetLinkController;
@@ -84,7 +85,7 @@ Route::prefix('admin')
             });
 
             Route::middleware(App\Http\Middleware\Permission::class)->group(function () {
-                Route::get('dashboard', [TriageController::class, 'index'])->name('dashboard');
+                Route::get('dashboard', [AdminTriageController::class, 'index'])->name('dashboard');
 
                 Route::resource('users', UserController::class)->except(['create', 'edit']);
 
@@ -96,9 +97,15 @@ Route::prefix('admin')
                     Route::delete('role/{role}', 'destroy')->name('roles.delete');
                 });
 
-                Route::controller(SettingController::class)->group(function () {
-                    Route::get('setting', 'index')->name('settings.index');
-                    Route::post('setting', 'updateOrCreateSetting')->name('settings.updateOrCreate');
+                Route::controller(AdminTriageController::class)->group(function () {
+                    Route::get('triage/step/1', 'triageStepOne')->name('triage.step.one');
+                    Route::post('triage/step/1', 'triageStepOneProcess')->name('triage.step.one.process');
+                    Route::get('triage/reset', 'triageStepOneProcessReset')->name('triage.step.one.process.reset');
+                    Route::get('triage/step/2', 'triageStepTwo')->name('triage.step.two');
+                    Route::post('triage/step/2', 'triageStepTwoProcess')->name('triage.step.two.process');
+                    Route::get('triage/step/validation', 'triageValidation')->name('triage.validation');
+                    Route::post('triage/step/validation', 'triageValidationProcess')->name('triage.validation.process');
+                    Route::delete('triage/{triage?}', 'destroy')->name('triage.delete');
                 });
             });
         });

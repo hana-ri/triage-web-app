@@ -22,15 +22,11 @@ return new class extends Migration
             $table->decimal('rr', 8, 2);
             $table->decimal('bt', 8, 2);
             $table->decimal('saturation', 8, 2);
-            // $table->integer('patients_number_per_hour');
-            // $table->enum('hospital_type', ['local', 'regional']);
-            // $table->enum('arrival_mode', ['public ambulance', 'private ambulance', 'private vehicle', 'walking', 'other']);
-            // $table->boolean('injury');
-            // $table->enum('AVPU_scale', ['alert', 'verbal responsive', 'painfully responsive', 'unresponsive']);
-            // $table->integer('nrs_pain');
-            $table->boolean('triage_device');
-            $table->string('prediction');
+            $table->boolean('triage_vital_o2_device');
+            $table->string('chief_complaint');
+            $table->string('prediction_level');
             $table->string('validation');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

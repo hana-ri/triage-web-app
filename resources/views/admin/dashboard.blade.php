@@ -1,13 +1,13 @@
 <x-app-layout>
-    <x-slot:title>Dashboard</x-slot:title>
+    <x-slot:title>List Triase</x-slot:title>
     <div class="page-wrapper">
-        <x-page-header title="Triase">
+        <x-page-header title="List triase">
             <div class="btn-list">
-                <a href="#" class="btn btn-primary d-none d-sm-inline-block">
+                <a href="{{ route('admin.triage.step.one.process.reset') }}" class="btn btn-primary d-none d-sm-inline-block">
                     <i class="ti ti-plus fs-3"></i>
                     Triase
                 </a>
-                <a href="#" class="btn btn-primary d-sm-none btn-icon">
+                <a href="{{ route('admin.triage.step.one.process.reset') }}" class="btn btn-primary d-sm-none btn-icon">
                     <i class="ti ti-plus fs-3"></i>
                 </a>
             </div>
@@ -25,17 +25,9 @@
                                             <th>Name</th>
                                             <th>Umur</th>
                                             <th>Gender</th>
-                                            <th>SBP</th>
-                                            <th>DBP</th>
-                                            <th>HR</th>
-                                            <th>RR</th>
-                                            <th>BT</th>
-                                            <th>Saturation</th>
-                                            <th>Perangkat O2</th>
+                                            <th>Level Triase</th>
                                             <th>Keluhan Utama</th>
-                                            <th>Prediksi</th>
-                                            <th>Validasi</th>
-                                            <th>Tanggal</th>
+                                            <th>Tanggal & Waktu</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -58,6 +50,14 @@
 
         <script text="text/javascript">
             $(document).ready(function() {
+                let triageId = "xxx";
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
                 let table = $('#triage-table').DataTable({
                     processing: true,
                     serverSide: true,
@@ -70,7 +70,10 @@
                         },
                         {
                             data: 'name',
-                            name: 'name'
+                            name: 'name',
+                            render: function(data, type, full, meta) {
+                                return '<p class="text-capitalize">' + data + '</p>';
+                            }
                         },
                         {
                             data: 'age',
@@ -78,82 +81,39 @@
                         },
                         {
                             data: 'gender',
-                            name: 'gender'
-                        },
-                        {
-                            data: 'sbp',
-                            name: 'sbp'
-                        },
-                        {
-                            data: 'dbp',
-                            name: 'dbp'
-                        },
-                        {
-                            data: 'hr',
-                            name: 'hr'
-                        },
-                        {
-                            data: 'rr',
-                            name: 'rr'
-                        },
-                        {
-                            data: 'bt',
-                            name: 'bt'
-                        },
-                        {
-                            data: 'saturation',
-                            name: 'saturation'
-                        },
-                        {
-                            data: 'arrival_mode',
-                            name: 'arrival_mode'
-                        },
-                        {
-                            data: 'injury',
-                            name: 'injury',
+                            name: 'gender',
                             render: function(data, type, full, meta) {
-                                if (data) {
-                                    return '<span class="badge bg-danger text-danger-fg">Yes</span>';
+                                if (data == 'male') {
+                                    return 'Laki-laki';
                                 } else {
-                                    return '<span class="badge bg-primary text-primary-fg">No</span>';
+                                    return 'Perempuan';
                                 }
                             }
                         },
                         {
-                            data: 'AVPU_scale',
-                            name: 'AVPU_scale'
-                        },
-                        {
-                            data: 'is_pain',
-                            name: 'is_pain',
+                            data: 'validation',
+                            name: 'validation',
                             render: function(data, type, full, meta) {
-                                if (data) {
-                                    return '<span class="badge bg-danger text-danger-fg">Yes</span>';
-                                } else {
-                                    return '<span class="badge bg-primary text-primary-fg">No</span>';
-                                }
-                            }
-                        },
-                        {
-                            data: 'nrs_pain',
-                            name: 'nrs_pain'
-                        },
-                        {
-                            data: 'prediction_level',
-                            name: 'prediction_level',
-                            render: function(data, type, full, meta) {
-                                if (data == 'Level 1') {
-                                    return '<span class="badge bg-danger text-danger-fg">' + data + '</span>';
-                                } else if(data == 'Level 2'){
-                                    return '<span class="badge bg-orange text-orange-fg">' + data + '</span>';
-                                } else if(data == 'Level 3'){
-                                    return '<span class="badge bg-yellow text-yellow-fg">' + data + '</span>';
-                                } else if(data == 'Level 4'){
-                                    return '<span class="badge bg-success text-success-fg">' + data + '</span>';
+                                if (data == '1') {
+                                    return '<span class="badge bg-danger text-danger-fg">Level ' + data + '</span>';
+                                } else if(data == '2'){
+                                    return '<span class="badge bg-orange text-orange-fg">Level ' + data + '</span>';
+                                } else if(data == '3'){
+                                    return '<span class="badge bg-yellow text-yellow-fg">Level ' + data + '</span>';
+                                } else if(data == '4'){
+                                    return '<span class="badge bg-success text-success-fg">Level ' + data + '</span>';
                                 } else{
-                                    return '<span class="badge bg-primary text-primary-fg">' + data + '</span>';
+                                    return '<span class="badge bg-primary text-primary-fg">Level ' + data + '</span>';
                                 }
                             }
+                        },
+                        {
+                            data: 'chief_complaint',
+                            name: 'chief_complaint'
+                        },
+                        {
+                            data: 'created_at',
+                            name: 'created_at'
                         },
                         {
                             data: 'action',
@@ -162,6 +122,28 @@
                             searchable: false
                         },
                     ]
+                });
+
+                $('body').on('click', '.delete-triage-action', function() {
+                    let result = confirm('Are you sure you want to delete this item?');
+
+                    triageId = $(this).data('id');
+                    console.log(triageId);
+
+                    if (result) {
+                        $.ajax({
+                            url: '{{ route('admin.triage.delete', ['triage' => ':triageId']) }}'.replace(
+                                ':triageId', triageId),
+                            type: 'DELETE',
+                            success: function(response) {
+                                showToast(response.success, 'success');
+                                table.ajax.reload(null, false);
+                            },
+                            error: function(error) {
+                                showToast('Terjadi kesalah saat ingin menghapus data triase.', 'error');
+                            }
+                        });
+                    }
                 });
             });
         </script>

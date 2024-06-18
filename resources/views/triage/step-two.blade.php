@@ -432,7 +432,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">DBP</label>
+                                    <label class="col-3 col-form-label required">Telamam darah diastolik</label>
                                     <div class="col">
                                         <input type="text" name="dbp" class="form-control" placeholder="80" value="{{ old('dbp', session()->get('triage')->dbp ?? '') }}">
                                         <small class="form-hint">Tekanan minimum yang dicatat sesaat sebelum kontraksi berikutnya.</small>

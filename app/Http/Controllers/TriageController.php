@@ -11,20 +11,21 @@ use Yajra\DataTables\Facades\DataTables;
 
 class TriageController extends Controller
 {
-    public function index(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = Triage::latest()->get();
+    // public function index(Request $request)
+    // {
+    //     if ($request->ajax()) {
+    //         $data = Triage::latest()->get();
 
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', fn($row) => view('admin.roles-and-permissions.action', ['row' => $row]))
-                ->rawColumns(['action'])
-                ->make(true);
-        }
+    //         return DataTables::of($data)
+    //             ->addIndexColumn()
+    //             ->addColumn('action', fn($row) => view('admin.roles-and-permissions.action', ['row' => $row]))
+    //             ->rawColumns(['action'])
+    //             ->make(true);
+    //     }
 
-        return view('admin.dashboard');
-    }
+    //     return view('admin.dashboard');
+    // }
+
     public function triageStepOne(Request $request): View
     {
         return view('triage.step-one');

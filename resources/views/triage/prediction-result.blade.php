@@ -42,7 +42,7 @@
                                     <div class="d-flex">
                                         <div>
                                             <h4 class="alert-title"> <i class="ti icon ti-alert-circle"></i>
-                                                Triase {{ $data['result'] }} {{ $triageTitle }}!</h4>
+                                                Triase Level {{ $data['result'] }} - {{ $triageTitle }}!</h4>
                                             <div class="text-secondary">{{ $triageMessage }}</div>
                                         </div>
                                     </div>

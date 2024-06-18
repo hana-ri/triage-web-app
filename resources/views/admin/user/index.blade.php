@@ -271,7 +271,7 @@
                         success: function(response) {
                             $('#{{ $modalId }}').modal('hide');
                             showToast(response.success, 'success');
-                            table.ajax.reload(null, false).page().draw();
+                            table.ajax.reload(null, false);
                         },
                         error: function(error) {
                             // console.log(error.responseJSON.errors);
@@ -292,7 +292,7 @@
                             type: 'DELETE',
                             success: function(response) {
                                 showToast(response.success, 'success');
-                                table.ajax.reload(null, false).page().draw();
+                                table.ajax.reload(null, false);
                             },
                             error: function(error) {
                                 showToast('Error in delete action user.', 'error');
