@@ -28,6 +28,7 @@
                                             <th>Level Triase</th>
                                             <th>Keluhan Utama</th>
                                             <th>Tanggal & Waktu</th>
+                                            <th>PJ</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -114,6 +115,10 @@
                         {
                             data: 'created_at',
                             name: 'created_at'
+                        },
+                        {
+                            data: 'user',
+                            name: 'user'
                         },
                         {
                             data: 'action',

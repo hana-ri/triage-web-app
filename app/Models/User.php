@@ -55,6 +55,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function triages()
+    {
+        return $this->hasMany(Triage::class);
+    }
+
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->format('d-m-Y H:i:s');

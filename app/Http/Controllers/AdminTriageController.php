@@ -13,10 +13,11 @@ class AdminTriageController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Triage::latest()->get();
+            $data = Triage::latest()->with(['user'])->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('user', fn($row) => $row->user->name)
                 ->addColumn('action', fn($row) => view('admin.triage.action', ['row' => $row]))
                 ->rawColumns(['action'])
                 ->make(true);
@@ -353,7 +354,8 @@ class AdminTriageController extends Controller
 
         $triage->fill($validatedData);
         $triage->gender = $triage->gender == 1 ? 'male' : 'female';
-        // dd($triage);
+        $triage->user_id = auth()->id();
+
         $triage->save();
         $request->session()->forget('triage');
 

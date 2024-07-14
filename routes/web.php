@@ -2,12 +2,11 @@
 
 use App\Http\Controllers\AdminTriageController;
 use App\Http\Controllers\Auth\LoginRegisterController;
-use App\Http\Controllers\auth\NewPasswordController;
-use App\Http\Controllers\auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesAndPermissionsController;
-use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TriageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;

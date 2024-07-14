@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('triage', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuid('user_id')->references('id')->on('users');
             $table->string('name', 255);
             $table->integer('age');
             $table->enum('gender', ['male', 'female']);
