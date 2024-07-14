@@ -52,6 +52,7 @@
                         <span class="nav-link-title"> Triase</span>
                     </a>
                 </li>
+                @if (auth()->user()->can('admin.users.index') || auth()->user()->hasRole('Super Admin'))
                 <li class="nav-item {{ request()->route()->named('admin.users.index') ? 'active' : '' }}">
                     <a class="nav-link {{ request()->route()->named('admin.users.index') ? 'active' : '' }}"
                         href="{{ route('admin.users.index') }}">
@@ -61,15 +62,20 @@
                         <span class="nav-link-title"> Pengguna</span>
                     </a>
                 </li>
-                <li class="nav-item {{ request()->route()->named('admin.roles.index') ? 'active' : '' }}">
-                    <a class="nav-link {{ request()->route()->named('admin.roles.index') ? 'active' : '' }}"
-                        href="{{ route('admin.roles.index') }}">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <i class="ti ti-shield-code fs-2"></i>
-                        </span>
-                        <span class="nav-link-title"> Roles & permissions</span>
-                    </a>
-                </li>
+                @endif
+                @if (auth()->user()->can('admin.roles.index') || auth()->user()->hasRole('Super Admin'))
+                    <li class="nav-item {{ request()->route()->named('admin.roles.index') ? 'active' : '' }}">
+                        <a class="nav-link {{ request()->route()->named('admin.roles.index') ? 'active' : '' }}"
+                            href="{{ route('admin.roles.index') }}">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-shield-code fs-2"></i>
+                            </span>
+                            <span class="nav-link-title"> Roles & permissions</span>
+                        </a>
+                    </li>
+                @endif
+                @can('admin.triage.*')
+                @endcan
             </ul>
         </div>
     </div>

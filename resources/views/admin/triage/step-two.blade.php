@@ -225,8 +225,12 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Teknan darah sistolik</label>
                                     <div class="col">
-                                        <input type="text" name="sbp" class="form-control" placeholder="120"
+                                        <input type="number" step="0.01" name="sbp"
+                                            class="form-control @error('sbp') is-invalid @enderror" placeholder="120"
                                             value="{{ old('sbp', session()->get('triage')->sbp ?? '') }}">
+                                        @error('sbp')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <small class="form-hint">Tekanan darah maksimum selama kontraksi
                                             ventrikel.</small>
                                     </div>
@@ -234,8 +238,12 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Tekanan darah diastolik</label>
                                     <div class="col">
-                                        <input type="text" name="dbp" class="form-control" placeholder="80"
+                                        <input type="number" step="0.01" name="dbp"
+                                            class="form-control @error('dbp') is-invalid @enderror" placeholder="80"
                                             value="{{ old('dbp', session()->get('triage')->dbp ?? '') }}">
+                                        @error('dbp')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <small class="form-hint">Tekanan minimum sesaat sebelum kontraksi
                                             berikutnya.</small>
                                     </div>
@@ -243,24 +251,36 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Denyut jantung</label>
                                     <div class="col">
-                                        <input type="text" name="hr" class="form-control" placeholder="70"
+                                        <input type="number" step="0.01" name="hr"
+                                            class="form-control @error('hr') is-invalid @enderror" placeholder="70"
                                             value="{{ old('hr', session()->get('triage')->hr ?? '') }}">
+                                        @error('hr')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <small class="form-hint">Berapa kali jantung berdenyut per menit.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Lajut respirasi</label>
                                     <div class="col">
-                                        <input type="text" name="rr" class="form-control" placeholder="20"
+                                        <input type="number" step="0.01" name="rr"
+                                            class="form-control @error('rr') is-invalid @enderror" placeholder="20"
                                             value="{{ old('rr', session()->get('triage')->rr ?? '') }}">
+                                        @error('rr')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <small class="form-hint">Jumlah napas yang diambil seseorang per menit.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Suhu tubuh</label>
                                     <div class="col">
-                                        <input type="text" name="bt" class="form-control" placeholder="37"
+                                        <input type="number" step="0.01" name="bt"
+                                            class="form-control @error('bt') is-invalid @enderror" placeholder="37"
                                             value="{{ old('bt', session()->get('triage')->bt ?? '') }}">
+                                        @error('bt')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <small class="form-hint">Skala suhu tubuh yang digunakan adalah skala celcius
                                             ℃.</small>
                                     </div>
@@ -268,18 +288,25 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Saturasi oksigen</label>
                                     <div class="col">
-                                        <input type="text" name="saturation" class="form-control" placeholder="98"
+                                        <input type="number" step="0.01" name="saturation"
+                                            class="form-control @error('saturation') is-invalid @enderror" placeholder="98"
                                             value="{{ old('saturation', session()->get('triage')->saturation ?? '') }}">
+                                        @error('saturation')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <small class="form-hint">Kadar oksigen didalam darah.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Perangkat O2</label>
                                     <div class="col">
-                                        <select name="triage_vital_o2_device" class="form-select">
+                                        <select name="triage_vital_o2_device" class="form-select @error('saturation') is-invalid @enderror">
                                             <option value="1">Ya</option>
                                             <option value="0">Tidak</option>
                                         </select>
+                                        @error('saturation')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <small class="form-hint">Tersedia alat yang dapat digunakan untuk memberikan
                                             oksigen ekstra kepada pasien, seperti tabung oksigen, masker oksigen, atau
                                             kanula hidung.</small>
@@ -289,17 +316,21 @@
                                     <label class="col-3 col-form-label required">Keluhan utama</label>
                                     <div class="col">
                                         <select id="select-state" name="chief_complaint[]" multiple
-                                            placeholder="Select a state..." autocomplete="off">
+                                            placeholder="Select a state..." autocomplete="off" class="@error('chief_complaint') is-invalid @enderror">
                                             <option value="">Select a state...</option>
                                             @foreach ($chief_complaint as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>
                                             @endforeach
                                         </select>
+                                        @error('chief_complaint')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100 mb-3">Triase</button>
                                 <div class="container d-flex align-items-center justify-content-center">
-                                    <a href="{{ route('admin.triage.step.one') }}" class="">Kembali ke langkah awal</a>
+                                    <a href="{{ route('admin.triage.step.one') }}" class="">Kembali ke langkah
+                                        awal</a>
                                 </div>
                             </form>
                         </div>
@@ -310,10 +341,10 @@
     </div>
 
     @push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
     @endpush
     @push('scripts')
-       <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
         <script>
             new TomSelect("#select-state", {});
         </script>

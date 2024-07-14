@@ -97,7 +97,7 @@
                         </li>
                         <li class="nav-item {{ request()->route()->named('triage.*') ? 'active' : '' }}">
                             <a class="nav-link {{ request()->route()->named('triage.*') ? 'active' : '' }}"
-                                href="{{ route('triage.step.one') }}">Demo Triase</a>
+                                href="{{ route('triage.step.one') }}">Demo Artificial Triase</a>
                         </li>
                     </ul>
                     <div class="d-flex">

@@ -23,7 +23,6 @@
                                     </ul>
                                 </div>
                             @endif
-
                             <form action="{{ route('admin.triage.validation.process') }}" method="post">
                                 @csrf
                                 <div class="mb-3 row">
@@ -44,7 +43,7 @@
                                             <div class="datagrid-item">
                                                 <div class="datagrid-title">Jenis kelamin</div>
                                                 <div class="datagrid-content text-capitalize">
-                                                    {{ session()->get('triage')->gender == 'male' ? 'Laki-Laki' : 'Perempuan' }}
+                                                    {{ session()->get('triage')->gender == 1 ? 'Laki-Laki' : 'Perempuan' }}
                                                 </div>
                                             </div>
                                             {{-- </div>
@@ -91,9 +90,9 @@
                                                 <div class="datagrid-title">Tersedia perangkat O2</div>
                                                 <div class="datagrid-content">
                                                     @if (session()->get('triage')->triage_vital_o2_device == '1')
-                                                        <span class="status status-green"> Tersedia </span>
+                                                        <span class="status status-primary"> Tersedia </span>
                                                     @else
-                                                        <span class="status status-red"> Tidak tersedia </span>
+                                                        <span class="status status-secondary"> Tidak tersedia </span>
                                                     @endif
                                                 </div>
                                             </div>

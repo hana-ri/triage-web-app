@@ -105,6 +105,9 @@ Route::prefix('admin')
                     Route::post('triage/step/2', 'triageStepTwoProcess')->name('triage.step.two.process');
                     Route::get('triage/step/validation', 'triageValidation')->name('triage.validation');
                     Route::post('triage/step/validation', 'triageValidationProcess')->name('triage.validation.process');
+                    Route::get('triage/{triage}/show', 'show')->name('triage.show');
+                    Route::get('triage/{triage}/edit', 'edit')->name('triage.edit');
+                    Route::post('triage/{triage}/update', 'update')->name('triage.update');
                     Route::delete('triage/{triage?}', 'destroy')->name('triage.delete');
                 });
             });

@@ -24,11 +24,11 @@
                                             <th>No</th>
                                             <th>Name</th>
                                             <th>Umur</th>
-                                            <th>Gender</th>
+                                            <th>Jenis Kelamin</th>
                                             <th>Level Triase</th>
                                             <th>Keluhan Utama</th>
                                             <th>Tanggal & Waktu</th>
-                                            <th>Action</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
