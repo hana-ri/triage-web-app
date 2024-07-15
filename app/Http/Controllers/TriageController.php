@@ -335,7 +335,10 @@ class TriageController extends Controller
         $client = new Client();
 
         try {
-            $response = $client->post('http://20.189.123.173:8000/predict', [
+            $url = env('API_TRIASE', 'http://127.0.0.1:5000');
+            $url = $url . '/predict';
+
+            $response = $client->post($url, [
                 'json' => $data,
             ]);
 
