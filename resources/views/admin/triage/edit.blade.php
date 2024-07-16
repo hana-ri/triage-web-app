@@ -254,8 +254,8 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Teknan darah sistolik</label>
                                     <div class="col">
-                                        <input type="text" name="sbp" class="form-control" placeholder="120"
-                                            value="{{ old('sbp', $triage->sbp ?? '') }}">
+                                        <input type="number" step="0.01" name="sbp" class="form-control" placeholder="120"
+                                            value="{{ (int) old('sbp', $triage->sbp ?? '') }}">
                                         <small class="form-hint">Tekanan darah maksimum selama kontraksi
                                             ventrikel.</small>
                                     </div>
@@ -263,8 +263,8 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Telamam darah diastolik</label>
                                     <div class="col">
-                                        <input type="text" name="dbp" class="form-control" placeholder="80"
-                                            value="{{ old('dbp', $triage->dbp ?? '') }}">
+                                        <input type="number" step="0.01" name="dbp" class="form-control" placeholder="80"
+                                            value="{{ (int) old('dbp', $triage->dbp ?? '') }}">
                                         <small class="form-hint">Tekanan minimum yang dicatat sesaat sebelum kontraksi
                                             berikutnya.</small>
                                     </div>
@@ -272,24 +272,24 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Denyut jantung</label>
                                     <div class="col">
-                                        <input type="text" name="hr" class="form-control" placeholder="70"
-                                            value="{{ old('hr', $triage->hr ?? '') }}">
+                                        <input type="number" step="0.01" name="hr" class="form-control" placeholder="70"
+                                            value="{{ (int) old('hr', $triage->hr ?? '') }}">
                                         <small class="form-hint">Berapa kali jantung berdenyut per menit.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Lajut respirasi</label>
                                     <div class="col">
-                                        <input type="text" name="rr" class="form-control" placeholder="20"
-                                            value="{{ old('rr', $triage->rr ?? '') }}">
+                                        <input type="number" step="0.01" name="rr" class="form-control" placeholder="20"
+                                            value="{{ (int) old('rr', $triage->rr ?? '') }}">
                                         <small class="form-hint">Jumlah napas yang diambil seseorang per menit.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Suhu tubuh</label>
                                     <div class="col">
-                                        <input type="text" name="bt" class="form-control" placeholder="37"
-                                            value="{{ old('bt', $triage->bt ?? '') }}">
+                                        <input type="number" step="0.01" name="bt" class="form-control" placeholder="37"
+                                            value="{{ (int) old('bt', $triage->bt ?? '') }}">
                                         <small class="form-hint">Skala suhu tubuh yang digunakan adalah skala celcius
                                             ℃.</small>
                                     </div>
@@ -297,8 +297,8 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Saturasi oksigen</label>
                                     <div class="col">
-                                        <input type="text" name="saturation" class="form-control" placeholder="98"
-                                            value="{{ old('saturation', $triage->saturation ?? '') }}">
+                                        <input type="number" name="saturation" class="form-control" placeholder="98"
+                                            value="{{ (int) old('saturation', $triage->saturation ?? '') }}">
                                         <small class="form-hint">Kadar oksigen didalam darah.</small>
                                     </div>
                                 </div>
@@ -315,16 +315,16 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Keluhan utama</label>
+                                    <label class="col-3 col-form-label required">Keluhan</label>
                                     <div class="col">
-                                        <textarea class="form-control" name="old_chief_complaint" rows="6" placeholder="Keluhan utama..." disabled>{{ $triage->chief_complaint }}</textarea>
+                                        <textarea class="form-control" name="old_chief_complaint" rows="6" placeholder="Keluhan..." disabled>{{ $triage->chief_complaint }}</textarea>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label">Keluhan</label>
                                     <div class="col">
                                         <select id="select-state" name="chief_complaint[]" multiple
-                                            placeholder="Select a state..." autocomplete="off">
+                                            placeholder="Pilih keluhan..." autocomplete="off">
                                             <option value="">Select a state...</option>
                                             @foreach ($chief_complaint as $key => $value)
                                                 <option value="{{ $key }}">{{ $value }}</option>

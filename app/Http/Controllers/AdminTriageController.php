@@ -13,7 +13,9 @@ class AdminTriageController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Triage::latest()->with(['user'])->get();
+            $data = Triage::latest()
+                ->with(['user'])
+                ->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -77,34 +79,36 @@ class AdminTriageController extends Controller
 
     public function triageStepTwoProcess(Request $request)
     {
-        $validatedData = $request->validate([
-            'sbp' => 'required',
-            'dbp' => 'required',
-            'hr' => 'required',
-            'rr' => 'required',
-            'bt' => 'required',
-            'saturation' => 'required',
-            'triage_vital_o2_device' => 'required',
-            'chief_complaint' => 'required',
-        ],
-        [
-            'required' => ':attribute wajib diisi.',
-            'numeric' => ':attribute harus berupa angka.',
-        ],
-        [
-            'sbp' => 'Tekanan darah sistolik',
-            'dbp' => 'Tekanan darah diastolik',
-            'hr' => 'Detak jantung',
-            'rr' => 'Laju pernapasan',
-            'bt' => 'Suhu tubuh',
-            'saturation' => 'Saturasi oksigen',
-            'triage_vital_o2_device' => 'Alat oksigen triase',
-            'chief_complaint' => 'Keluhan utama',
-        ]);
+        $validatedData = $request->validate(
+            [
+                'sbp' => 'required',
+                'dbp' => 'required',
+                'hr' => 'required',
+                'rr' => 'required',
+                'bt' => 'required',
+                'saturation' => 'required',
+                'triage_vital_o2_device' => 'required',
+                'chief_complaint' => 'nullable',
+            ],
+            [
+                'required' => ':attribute wajib diisi.',
+                'numeric' => ':attribute harus berupa angka.',
+            ],
+            [
+                'sbp' => 'Tekanan darah sistolik',
+                'dbp' => 'Tekanan darah diastolik',
+                'hr' => 'Detak jantung',
+                'rr' => 'Laju pernapasan',
+                'bt' => 'Suhu tubuh',
+                'saturation' => 'Saturasi oksigen',
+                'triage_vital_o2_device' => 'Alat oksigen triase',
+                'chief_complaint' => 'Keluhan utama',
+            ],
+        );
 
         $triage = $request->session()->get('triage');
         $validatedData['age'] = $triage->age;
-        $validatedData['gender'] = $triage->gender == 'male' ? 1 : 0;
+        $validatedData['gender'] = $triage->gender == 'male' || $triage->gender == 1 ? 1 : 0;
 
         $triage->fill($validatedData);
         $request->session()->put('triage', $triage);
@@ -316,19 +320,19 @@ class AdminTriageController extends Controller
             'cc_wristpain' => 'nyeri pergelangan tangan (wrist pain)',
         ];
 
-        $temp_cc = '';
-        foreach ($triage->chief_complaint as $key => $value) {
-            $temp_cc = $temp_cc .= $chief_complaint[$value];
+        $temp_cc = 'Tidak tersedia';
+        if (isset($attributes['chief_complaint'])) {
+            foreach ($triage->chief_complaint as $key => $value) {
+                $temp_cc = $temp_cc .= $chief_complaint[$value];
 
-            $isLastIteration = $key === array_key_last($triage->chief_complaint);
-            if (!$isLastIteration) {
-                $temp_cc = $temp_cc .= ', ';
+                $isLastIteration = $key === array_key_last($triage->chief_complaint);
+                if (!$isLastIteration) {
+                    $temp_cc = $temp_cc .= ', ';
+                }
             }
         }
 
         $triage->chief_complaint = $temp_cc;
-        // $triage->save();
-        // $request->session()->forget('triage');
 
         return redirect()->route('admin.triage.validation');
     }
@@ -579,8 +583,10 @@ class AdminTriageController extends Controller
             'cc_wristpain' => [0],
         ];
 
-        foreach ($attributes['chief_complaint'] as $cc) {
-            $data[$cc] = [1];
+        if (isset($attributes['chief_complaint'])) {
+            foreach ($attributes['chief_complaint'] as $cc) {
+                $data[$cc] = [1];
+            }
         }
 
         $client = new Client();

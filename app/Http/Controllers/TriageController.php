@@ -66,7 +66,7 @@ class TriageController extends Controller
                 'bt' => 'required|numeric',
                 'saturation' => 'required|numeric',
                 'triage_vital_o2_device' => 'required',
-                'chief_complaint' => 'required',
+                'chief_complaint' => 'nullable',
             ],
             [
                 'required' => ':attribute wajib diisi.',
@@ -86,7 +86,7 @@ class TriageController extends Controller
 
         $triage = $request->session()->get('triage');
         $validatedData['age'] = $triage->age;
-        $validatedData['gender'] = $triage->gender == 'male' ? 1 : 0;
+        $validatedData['gender'] = $triage->gender == 'male' || $triage->gender == 1 ? 1 : 0;
 
         $triage->fill($validatedData);
         $request->session()->put('triage', $triage);
@@ -328,9 +328,13 @@ class TriageController extends Controller
             'cc_wristpain' => [0],
         ];
 
-        foreach ($attributes['chief_complaint'] as $cc) {
-            $data[$cc] = [1];
+        if (isset($attributes['chief_complaint'])) {
+            foreach ($attributes['chief_complaint'] as $cc) {
+                $data[$cc] = [1];
+            }
         }
+
+        // dd($data);
 
         $client = new Client();
 

@@ -505,19 +505,19 @@
                                     <div class="col">
                                         <select name="triage_vital_o2_device"
                                             class="form-select @error('triage_vital_o2_device') is-invalid @enderror">
-                                            <option value="1">Ya</option>
-                                            <option value="0">Tidak</option>
+                                            <option value="1" @selected(old('triage_vital_o2_device', session()->get('triage')->triage_vital_o2_device ?? '') == 1)>Ya</option>
+                                            <option value="0" @selected(old('triage_vital_o2_device', session()->get('triage')->triage_vital_o2_device ?? '') == 0)>Tidak</option>
                                         </select>
                                         @error('triage_vital_o2_device')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                        <small class="form-hint">Tersedia alat yang dapat digunakan untuk memberikan
+                                        <small class="form-hint">Membutuhkan alat yang dapat digunakan untuk memberikan
                                             oksigen ekstra kepada pasien, seperti tabung oksigen, masker oksigen, atau
                                             kanula hidung.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Keluhan utama</label>
+                                    <label class="col-3 col-form-label required">Keluhan</label>
                                     <div class="col">
                                         <select id="select-state" name="chief_complaint[]" multiple
                                             class="@error('chief_complaint') is-invalid @enderror"

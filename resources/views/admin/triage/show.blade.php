@@ -115,7 +115,7 @@
                                     </div>
                                     <div class="datagrid mb-3">
                                         <div class="datagrid-item">
-                                            <div class="datagrid-title">Keluhan utama</div>
+                                            <div class="datagrid-title">Keluhan</div>
                                             <div class="datagrid-content">
                                                 {{ $triage->chief_complaint ?? '' }}.
                                             </div>

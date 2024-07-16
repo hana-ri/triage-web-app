@@ -113,6 +113,21 @@
         <div class="page-wrapper">
             {{ $slot }}
         </div>
+        <footer class="footer d-print-none m-0">
+            <div class="container-fluid">
+                <div class="row text-center align-items-center d-flex justify-content-center">
+                    <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                        <ul class="list-inline list-inline-dots mb-0">
+                            <li class="list-inline-item">
+                                <a href="#" class="link-secondary">Sistem Klasifikasi Level Triase</a>
+                                |
+                                <a href="https://tekkom.upi.edu" class="link-secondary">Teknik Komputer - Universitas Pendidikan Indonesia</a>.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
     <!-- Libs JS -->
     @stack('script')

@@ -87,12 +87,12 @@
                                                 </div>
                                             </div>
                                             <div class="datagrid-item">
-                                                <div class="datagrid-title">Tersedia perangkat O2</div>
+                                                <div class="datagrid-title">Membutuhkan perangkat O2</div>
                                                 <div class="datagrid-content">
                                                     @if (session()->get('triage')->triage_vital_o2_device == '1')
-                                                        <span class="status status-primary"> Tersedia </span>
+                                                        <span class="status status-primary"> Ya </span>
                                                     @else
-                                                        <span class="status status-secondary"> Tidak tersedia </span>
+                                                        <span class="status status-secondary"> Tidak  </span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -101,7 +101,7 @@
                                     <div class="mb-3 col-12">
                                         <div class="datagrid">
                                             <div class="datagrid-item">
-                                                <div class="datagrid-title">Keluhan utama</div>
+                                                <div class="datagrid-title">Keluhan</div>
                                                 <div class="datagrid-content">
                                                     {{ session()->get('triage')->chief_complaint ?? '' }}.
                                                     {{-- <textarea class="form-control" name="example-textarea-input" rows="6" disabled>{{ session()->get('triage')->chief_complaint ?? '' }}</textarea> --}}

@@ -26,7 +26,7 @@
                                             <th>Umur</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Level Triase</th>
-                                            <th>Keluhan Utama</th>
+                                            <th>Keluhan</th>
                                             <th>Tanggal & Waktu</th>
                                             <th>PJ</th>
                                             <th>Aksi</th>
@@ -130,7 +130,7 @@
                 });
 
                 $('body').on('click', '.delete-triage-action', function() {
-                    let result = confirm('Are you sure you want to delete this item?');
+                    let result = confirm('Apakah anda yakin ingin menghapus data tersebuts?');
 
                     triageId = $(this).data('id');
                     console.log(triageId);

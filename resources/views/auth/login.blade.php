@@ -1,7 +1,7 @@
 <x-auth-layout>
     <x-slot:title>Login</x-slot:title>
     <h2 class="h3 text-center mb-3">
-        Login to your account
+        Masuk menggunakan akun yang sudah didaftarkan oleh Admin
     </h2>
 
     @if (session('message'))
@@ -20,15 +20,15 @@
         @method('POST')
         @csrf
         <div class="mb-3">
-            <label class="form-label">Email address</label>
+            <label class="form-label">Alamat email</label>
             <input type="email" class="form-control" name="email" placeholder="your@email.com" autocomplete="off"
                 required>
         </div>
         <div class="mb-2">
             <label class="form-label">
-                Password
+                Kata sandi
                 <span class="form-label-description">
-                    <a href="{{ route('password.request') }}">I forgot password</a>
+                    <a href="{{ route('password.request') }}">Lupa kata sandi</a>
                 </span>
             </label>
             <input type="password" class="form-control" name="password" placeholder="your password" autocomplete="off"
@@ -37,7 +37,7 @@
         <div class="mb-2">
             <label class="form-check">
                 <input type="checkbox" name="remember" class="form-check-input" value="1">
-                <span class="form-check-label">Remember me on this device</span>
+                <span class="form-check-label">Ingat saya</span>
             </label>
         </div>
         <div class="form-footer">
