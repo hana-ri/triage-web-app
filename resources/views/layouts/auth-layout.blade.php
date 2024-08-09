@@ -41,7 +41,7 @@
         <div class="col-12 col-lg-6 col-xl-8 d-none d-lg-block">
             <!-- Photo -->
             <div class="bg-cover h-100 min-vh-100"
-                style="background-image: url({{ asset('assets/images/lab_upi.png') }})">
+                style="background-image: url({{ asset('assets/images/gambar_IGD.jpg') }})">
             </div>
         </div>
     </div>

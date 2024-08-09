@@ -65,7 +65,7 @@
                                             <div class="datagrid-item">
                                                 <div class="datagrid-title">Denyut jantung</div>
                                                 <div class="datagrid-content text-capitalize">
-                                                    {{ session()->get('triage')->hr ?? '' }}
+                                                    {{ session()->get('triage')->hr ?? '' }} BPM
                                                 </div>
                                             </div>
                                             <div class="datagrid-item">
@@ -92,7 +92,7 @@
                                                     @if (session()->get('triage')->triage_vital_o2_device == '1')
                                                         <span class="status status-primary"> Ya </span>
                                                     @else
-                                                        <span class="status status-secondary"> Tidak  </span>
+                                                        <span class="status status-secondary"> Tidak </span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -114,15 +114,46 @@
                                             <div class="datagrid-item">
                                                 <div class="datagrid-title">Hasil prediksi model artificial</div>
                                                 <div class="datagrid-content">
-                                                    <input type="text" name="prediction_level" class="form-control"
-                                                        placeholder="120"
-                                                        value="Level {{ old('prediction_level', session()->get('triage')->prediction_level ?? '') }}"
-                                                        disabled>
+                                                    @if (session()->get('triage')->prediction_level == 1)
+                                                        <div class="alert alert-important alert-danger m-0" role="alert">
+                                                            <div class="d-flex">
+                                                                    Level
+                                                                    {{ session()->get('triage')->prediction_level }}
+                                                            </div>
+                                                        </div>
+                                                    @elseif (session()->get('triage')->prediction_level == 2)
+                                                    <div class="alert alert-important alert-orange" role="alert">
+                                                        <div class="d-flex">
+                                                                Level
+                                                                {{ session()->get('triage')->prediction_level }}
+                                                        </div>
+                                                    </div>
+                                                    @elseif (session()->get('triage')->prediction_level == 3)
+                                                    <div class="alert alert-important alert-yellow" role="alert">
+                                                        <div class="d-flex">
+                                                                Level
+                                                                {{ session()->get('triage')->prediction_level }}
+                                                        </div>
+                                                    </div>
+                                                    @elseif (session()->get('triage')->prediction_level == 4)
+                                                    <div class="alert alert-important alert-green" role="alert">
+                                                        <div class="d-flex">
+                                                                Level
+                                                                {{ session()->get('triage')->prediction_level }}
+                                                        </div>
+                                                    </div>
+                                                    @else
+                                                    <div class="alert alert-important alert-blue" role="alert">
+                                                        <div class="d-flex">
+                                                                Level
+                                                                {{ session()->get('triage')->prediction_level }}
+                                                        </div>
+                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="datagrid-item">
-                                                <div class="datagrid-title form-label required">Validasi prediksi model
-                                                    artificial</div>
+                                                <div class="datagrid-title form-label required">Konfirmasi level triase</div>
                                                 <div class="datagrid-content">
                                                     <select name="validation"
                                                         class="form-select @error('validation') is-invalid @enderror">

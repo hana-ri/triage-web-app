@@ -21,7 +21,7 @@
         @csrf
         <div class="mb-3">
             <label class="form-label">Alamat email</label>
-            <input type="email" class="form-control" name="email" placeholder="your@email.com" autocomplete="off"
+            <input type="email" class="form-control" name="email" placeholder="jhon@email.com" autocomplete="off"
                 required>
         </div>
         <div class="mb-2">
@@ -31,7 +31,7 @@
                     <a href="{{ route('password.request') }}">Lupa kata sandi</a>
                 </span>
             </label>
-            <input type="password" class="form-control" name="password" placeholder="your password" autocomplete="off"
+            <input type="password" class="form-control" name="password" placeholder="Kata sandi anda" autocomplete="off"
                 required>
         </div>
         <div class="mb-2">

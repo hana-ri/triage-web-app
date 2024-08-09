@@ -21,16 +21,16 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::prefix('/triage')
-    ->name('triage.')
-    ->controller(TriageController::class)
-    ->group(function () {
-        Route::get('/step/1', 'triageStepOne')->name('step.one');
-        Route::post('/step/1', 'triageStepOneProcess')->name('step.one.process');
-        Route::get('/step/2', 'triageStepTwo')->name('step.two');
-        Route::post('/step/2', 'triageStepTwoProcess')->name('step.two.process');
-        Route::get('/result', 'triagePredictionResult')->name('prediction.result');
-});
+// Route::prefix('/triage')
+//     ->name('triage.')
+//     ->controller(TriageController::class)
+//     ->group(function () {
+//         Route::get('/step/1', 'triageStepOne')->name('step.one');
+//         Route::post('/step/1', 'triageStepOneProcess')->name('step.one.process');
+//         Route::get('/step/2', 'triageStepTwo')->name('step.two');
+//         Route::post('/step/2', 'triageStepTwoProcess')->name('step.two.process');
+//         Route::get('/result', 'triagePredictionResult')->name('prediction.result');
+// });
 /*
 |--------------------------------------------------------------------------
 | Authentication Route

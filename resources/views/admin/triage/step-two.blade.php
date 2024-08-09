@@ -223,7 +223,7 @@
                                 @csrf
                                 @method('POST')
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Teknan darah sistolik</label>
+                                    <label class="col-3 col-form-label required">Tekanan darah sistolik</label>
                                     <div class="col">
                                         <input type="number" step="0.01" name="sbp"
                                             class="form-control @error('sbp') is-invalid @enderror" placeholder="120"
@@ -232,7 +232,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                         <small class="form-hint">Tekanan darah maksimum selama kontraksi
-                                            ventrikel.</small>
+                                            ventrikel. | Rentan SBP yang digunakan dalam pelatihan model 51 hingga 312.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -244,8 +244,8 @@
                                         @error('dbp')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                        <small class="form-hint">Tekanan minimum sesaat sebelum kontraksi
-                                            berikutnya.</small>
+                                        <small class="form-hint">Tekanan darah minimum sesaat sebelum kontraksi
+                                            berikutnya. | Rentan DBP yang digunakan dalam pelatihan model 24 hingga 189.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -257,11 +257,11 @@
                                         @error('hr')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                        <small class="form-hint">Berapa kali jantung berdenyut per menit.</small>
+                                        <small class="form-hint">Denyut jantung per menit. | Rentan denyut jantung yang digunakan dalam pelatihan model 30 hingga 280.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Lajut respirasi</label>
+                                    <label class="col-3 col-form-label required">Laju respirasi</label>
                                     <div class="col">
                                         <input type="number" step="0.01" name="rr"
                                             class="form-control @error('rr') is-invalid @enderror" placeholder="20"
@@ -269,7 +269,7 @@
                                         @error('rr')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                        <small class="form-hint">Jumlah napas yang diambil seseorang per menit.</small>
+                                        <small class="form-hint">Jumlah napas yang diambil seseorang per menit. | Rentan laju respirasi yang digunakan dalam pelatihan model 8 hingga 69.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -282,7 +282,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                         <small class="form-hint">Skala suhu tubuh yang digunakan adalah skala celcius
-                                            ℃.</small>
+                                            ℃. | Rentan suhu tubuh yang digunakan dalam pelatihan model 32 ℃ hingga 41 ℃.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
@@ -294,21 +294,20 @@
                                         @error('saturation')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                        <small class="form-hint">Kadar oksigen didalam darah.</small>
+                                        <small class="form-hint">Persentase kadar oksigen didalam darah. | Rentan saturasi oksigen yang digunakan dalam pelatihan model 60 hingga 99.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Perangkat O2 {{ session()->get('triage')->triage_vital_o2_device }}</label>
                                     <div class="col">
-                                        <select name="triage_vital_o2_device" class="form-select @error('saturation') is-invalid @enderror">
+                                        <select name="triage_vital_o2_device" class="form-select @error('triage_vital_o2_device') is-invalid @enderror">
                                             <option value="1" @selected(old('triage_vital_o2_device', session()->get('triage')->triage_vital_o2_device ?? '') == 1)>Ya</option>
                                             <option value="0" @selected(old('triage_vital_o2_device', session()->get('triage')->triage_vital_o2_device ?? '') == 0)>Tidak</option>
                                         </select>
-                                        @error('saturation')
+                                        @error('triage_vital_o2_device')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                        <small class="form-hint">Membutuhkan alat yang dapat digunakan untuk memberikan
-                                            oksigen ekstra kepada pasien, seperti tabung oksigen, masker oksigen, atau
+                                        <small class="form-hint">Membutuhkan alat bantu pernapasan? seperti tabung oksigen, masker oksigen, atau
                                             kanula hidung.</small>
                                     </div>
                                 </div>

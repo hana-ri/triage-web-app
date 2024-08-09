@@ -438,7 +438,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Telamam darah diastolik</label>
+                                    <label class="col-3 col-form-label required">Tekanan darah diastolik</label>
                                     <div class="col">
                                         <input type="number" step="0.01" name="dbp"
                                             class="form-control @error('dbp') is-invalid @enderror" placeholder="80"

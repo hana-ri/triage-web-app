@@ -105,7 +105,8 @@
                     columns: [{
                             data: 'DT_RowIndex',
                             name: 'id',
-                            searchable: false,
+                            orderable: false,
+                            searchable: false
                         },
                         {
                             data: 'name',
@@ -145,7 +146,12 @@
                             orderable: false,
                             searchable: false
                         },
-                    ]
+                    ],
+                    language: {
+                        emptyTable: "No data available in table",
+                        loadingRecords: "Please wait - loading...",
+                        zeroRecords: "No matching records found",
+                    }
                 });
 
                 $.ajaxSetup({
@@ -194,7 +200,8 @@
                             $('#{{ $formId }} input[name="email"]').val(response.user.email);
                             $("select[name='role']").val(response.role);
 
-                            $('#{{ $modalId }}').modal('show');                        },
+                            $('#{{ $modalId }}').modal('show');
+                        },
                         error: function(error) {
                             // console.log(error.responseJSON.errors);
                             showToast(error.responseJSON.errors, 'error');
@@ -207,9 +214,9 @@
                     $('#{{ $formId }}').trigger('reset');
                     $('#{{ $formId }} .info-fields').hide(); // hide selain password
                     $('.info-fields input').prop('disabled',
-                    true); // disable input selain password biar gk ngebug
+                        true); // disable input selain password biar gk ngebug
                     $('.info-fields select').prop('disabled',
-                    true); // disable input selain password biar gk ngebug
+                        true); // disable input selain password biar gk ngebug
                     $('#{{ $formId }} .password-fields').show();
                     $('#{{ $modalId }}').modal('show');
 

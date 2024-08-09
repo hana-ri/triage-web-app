@@ -254,42 +254,42 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Teknan darah sistolik</label>
                                     <div class="col">
-                                        <input type="number" step="0.01" name="sbp" class="form-control" placeholder="120"
-                                            value="{{ (int) old('sbp', $triage->sbp ?? '') }}">
+                                        <input type="number" step="0.01" name="sbp" class="form-control"
+                                            placeholder="120" value="{{ (int) old('sbp', $triage->sbp ?? '') }}">
                                         <small class="form-hint">Tekanan darah maksimum selama kontraksi
                                             ventrikel.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Telamam darah diastolik</label>
+                                    <label class="col-3 col-form-label required">Tekanan darah diastolik</label>
                                     <div class="col">
-                                        <input type="number" step="0.01" name="dbp" class="form-control" placeholder="80"
-                                            value="{{ (int) old('dbp', $triage->dbp ?? '') }}">
-                                        <small class="form-hint">Tekanan minimum yang dicatat sesaat sebelum kontraksi
+                                        <input type="number" step="0.01" name="dbp" class="form-control"
+                                            placeholder="80" value="{{ (int) old('dbp', $triage->dbp ?? '') }}">
+                                        <small class="form-hint">Tekanan darah minimum sesaat sebelum kontraksi
                                             berikutnya.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Denyut jantung</label>
                                     <div class="col">
-                                        <input type="number" step="0.01" name="hr" class="form-control" placeholder="70"
-                                            value="{{ (int) old('hr', $triage->hr ?? '') }}">
+                                        <input type="number" step="0.01" name="hr" class="form-control"
+                                            placeholder="70" value="{{ (int) old('hr', $triage->hr ?? '') }}">
                                         <small class="form-hint">Berapa kali jantung berdenyut per menit.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Lajut respirasi</label>
+                                    <label class="col-3 col-form-label required">Laju respirasi</label>
                                     <div class="col">
-                                        <input type="number" step="0.01" name="rr" class="form-control" placeholder="20"
-                                            value="{{ (int) old('rr', $triage->rr ?? '') }}">
+                                        <input type="number" step="0.01" name="rr" class="form-control"
+                                            placeholder="20" value="{{ (int) old('rr', $triage->rr ?? '') }}">
                                         <small class="form-hint">Jumlah napas yang diambil seseorang per menit.</small>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label required">Suhu tubuh</label>
                                     <div class="col">
-                                        <input type="number" step="0.01" name="bt" class="form-control" placeholder="37"
-                                            value="{{ (int) old('bt', $triage->bt ?? '') }}">
+                                        <input type="number" step="0.01" name="bt" class="form-control"
+                                            placeholder="37" value="{{ (int) old('bt', $triage->bt ?? '') }}">
                                         <small class="form-hint">Skala suhu tubuh yang digunakan adalah skala celcius
                                             ℃.</small>
                                     </div>
@@ -321,7 +321,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label">Keluhan</label>
+                                    <label class="col-3 col-form-label">Update keluhan (opsional)</label>
                                     <div class="col">
                                         <select id="select-state" name="chief_complaint[]" multiple
                                             placeholder="Pilih keluhan..." autocomplete="off">
@@ -335,23 +335,59 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Artificial Triase</label>
+                                    <label class="col-3 col-form-label required">Artificial triase</label>
                                     <div class="col">
-                                        <select name="validation"
+                                        {{-- <select name="validation"
                                             class="form-select @error('validation') is-invalid @enderror" disabled>
                                             <option value="1" @selected(old('prediction_level', $triage->prediction_level ?? '') == '1')>Level 1</option>
                                             <option value="2" @selected(old('prediction_level', $triage->prediction_level ?? '') == '2')>Level 2</option>
                                             <option value="3" @selected(old('prediction_level', $triage->prediction_level ?? '') == '3')>Level 3</option>
                                             <option value="4" @selected(old('prediction_level', $triage->prediction_level ?? '') == '4')>Level 4</option>
                                             <option value="5" @selected(old('prediction_level', $triage->prediction_level ?? '') == '5')>Levle 5</option>
-                                        </select>
+                                        </select> --}}
+                                        @if ($triage->prediction_level == 1)
+                                            <div class="alert alert-important alert-danger m-0" role="alert">
+                                                <div class="d-flex">
+                                                    Level
+                                                    {{ $triage->prediction_level }}
+                                                </div>
+                                            </div>
+                                        @elseif ($triage->prediction_level == 2)
+                                            <div class="alert alert-important alert-orange" role="alert">
+                                                <div class="d-flex">
+                                                    Level
+                                                    {{ $triage->prediction_level }}
+                                                </div>
+                                            </div>
+                                        @elseif ($triage->prediction_level == 3)
+                                            <div class="alert alert-important alert-yellow" role="alert">
+                                                <div class="d-flex">
+                                                    Level
+                                                    {{ $triage->prediction_level }}
+                                                </div>
+                                            </div>
+                                        @elseif ($triage->prediction_level == 4)
+                                            <div class="alert alert-important alert-green" role="alert">
+                                                <div class="d-flex">
+                                                    Level
+                                                    {{ $triage->prediction_level }}
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="alert alert-important alert-blue" role="alert">
+                                                <div class="d-flex">
+                                                    Level
+                                                    {{ $triage->prediction_level }}
+                                                </div>
+                                            </div>
+                                        @endif
                                         @error('validation')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label required">Validasi</label>
+                                    <label class="col-3 col-form-label required">Konfirmasi level triase</label>
                                     <div class="col">
                                         <select name="validation"
                                             class="form-select @error('validation') is-invalid @enderror">
@@ -370,7 +406,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-3 col-form-label">Catatan</label>
+                                    <label class="col-3 col-form-label">Catatan (opsional)</label>
                                     <div class="col">
                                         <textarea class="form-control" name="note" rows="6" placeholder="Catatan...">{{ $triage->note }}</textarea>
                                     </div>

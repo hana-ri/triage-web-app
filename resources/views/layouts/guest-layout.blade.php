@@ -95,10 +95,10 @@
                             <a class="nav-link {{ request()->route()->named('home') ? 'active' : '' }}" aria-current="page"
                                 href="/">Beranda</a>
                         </li>
-                        <li class="nav-item {{ request()->route()->named('triage.*') ? 'active' : '' }}">
+                        {{-- <li class="nav-item {{ request()->route()->named('triage.*') ? 'active' : '' }}">
                             <a class="nav-link {{ request()->route()->named('triage.*') ? 'active' : '' }}"
                                 href="{{ route('triage.step.one') }}">Demo Artificial Triase</a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <div class="d-flex">
                         @if (!Auth::guest())

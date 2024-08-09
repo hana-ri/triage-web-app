@@ -12,10 +12,10 @@ class AdminTriageController extends Controller
 {
     public function index(Request $request)
     {
+        $data = Triage::query();
         if ($request->ajax()) {
-            $data = Triage::latest()
-                ->with(['user'])
-                ->get();
+            $data->latest()
+                ->with(['user']);
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -25,7 +25,13 @@ class AdminTriageController extends Controller
                 ->make(true);
         }
 
-        return view('admin.dashboard');
+        $notMatchingCount = Triage::whereColumn('prediction_level', '!=', 'validation')->count();
+        $matchingCount = Triage::whereColumn('prediction_level', 'validation')->count();
+
+        return view('admin.dashboard', [
+            'notMatchingCount' => $notMatchingCount,
+            'matchingCount' => $matchingCount
+        ]);
     }
 
     public function triageStepOne()
@@ -37,20 +43,21 @@ class AdminTriageController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'name' => 'required',
-                'age' => 'required|numeric',
+                'name' => 'required|max:255',
+                'age' => 'required|numeric|between:18,107',
                 'gender' => 'required',
             ],
-
             [
                 'required' => ':attribute wajib diisi.',
                 'numeric' => ':attribute harus berupa angka.',
+                'age.between' => ':attribute harus berada dalam rentang 18 hingga 107.',
+                'max' => ':attribute tidak boleh lebih dari :max karakter.',
             ],
             [
                 'name' => 'Nama',
                 'age' => 'Usia',
                 'gender' => 'Jenis kelamin',
-            ],
+            ]
         );
 
         if (empty($request->session()->get('triage'))) {
@@ -81,18 +88,24 @@ class AdminTriageController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'sbp' => 'required',
-                'dbp' => 'required',
-                'hr' => 'required',
-                'rr' => 'required',
-                'bt' => 'required',
-                'saturation' => 'required',
+                'sbp' => 'required|numeric|between:51,312',
+                'dbp' => 'required|numeric|between:24,189',
+                'hr' => 'required|numeric|between:30,280',
+                'rr' => 'required|numeric|between:8,69',
+                'bt' => 'required|numeric|between:32,41',
+                'saturation' => 'required|numeric|between:60,99',
                 'triage_vital_o2_device' => 'required',
                 'chief_complaint' => 'nullable',
             ],
             [
                 'required' => ':attribute wajib diisi.',
                 'numeric' => ':attribute harus berupa angka.',
+                'sbp.between' => ':attribute harus berada dalam rentang 51 hingga 312.',
+                'dbp.between' => ':attribute harus berada dalam rentang 24 hingga 189.',
+                'hr.between' => ':attribute harus berada dalam rentang 30 hingga 280.',
+                'rr.between' => ':attribute harus berada dalam rentang 8 hingga 69.',
+                'bt.between' => ':attribute harus berada dalam rentang 32 ℃ hingga 41 ℃.',
+                'saturation.between' => ':attribute harus berada dalam rentang 60 hingga 99.',
             ],
             [
                 'sbp' => 'Tekanan darah sistolik',
@@ -321,10 +334,10 @@ class AdminTriageController extends Controller
         ];
 
         $temp_cc = 'Tidak tersedia';
-        if (isset($attributes['chief_complaint'])) {
+        if (isset($validatedData['chief_complaint'])) {
+            $temp_cc = '';
             foreach ($triage->chief_complaint as $key => $value) {
                 $temp_cc = $temp_cc .= $chief_complaint[$value];
-
                 $isLastIteration = $key === array_key_last($triage->chief_complaint);
                 if (!$isLastIteration) {
                     $temp_cc = $temp_cc .= ', ';
@@ -332,6 +345,7 @@ class AdminTriageController extends Controller
             }
         }
 
+        // dd($temp_cc);
         $triage->chief_complaint = $temp_cc;
 
         return redirect()->route('admin.triage.validation');

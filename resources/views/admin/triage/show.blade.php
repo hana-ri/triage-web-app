@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
                                         <div class="datagrid-item">
-                                            <div class="datagrid-title">Hasil validasi tenaga medis</div>
+                                            <div class="datagrid-title">Level triase yang terkonfirmasi</div>
                                             <div class="datagrid-content">
                                                 @if ($triage->validation == '1')
                                                     <span class="status status-danger"> Level 1 - Resusitasi </span>
