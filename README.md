@@ -1,47 +1,104 @@
-## About Montir Web Base Auth
+# Emergency Severity Triage Classification Web Application
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This web application is an implementation of the Emergency Severity Index (ESI) triage classification system for emergency department patients. The application uses a one-dimensional Convolutional Neural Network (1D CNN) model to predict the triage level of patients based on their vital signs and chief complaints, helping healthcare workers make faster and more accurate triage decisions.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Patient Registration**: Collect basic demographic information (name, age, gender)
+- **Vital Signs Input**: Record key vital signs (blood pressure, heart rate, respiratory rate, temperature, oxygen saturation)
+- **Chief Complaint Selection**: Choose from comprehensive list of standardized chief complaints
+- **Automated Triage Classification**: Predicts ESI triage level (1-5) using an AI model
+- **Validation System**: Allows healthcare professionals to validate and override model predictions
+- **Dashboard**: View and manage triage records with statistics on prediction accuracy
+- **User Management**: Role-based access control for different user types
 
-## How to run
-Run migration with seeder.
-```bash
-php artisan migrate --seed
-```
-Run custome command to generate permissions.
-```bash
-php artisan app:generate-permissions
-```
-Start the server.
-```bash
-php artisan artisan serve
-```
-To make email verification and forget password work you need the run artisan queue.
-```bash
-php artisan queue:work
-```
+## Technical Information
 
-## Contributing
+### System Requirements
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- PHP 8.0 or higher
+- Laravel Framework
+- MySQL/PostgreSQL database
+- Web server (Apache/Nginx)
+- Connectivity to the triage classification API
 
-## Code of Conduct
+### Model Connection
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+This application connects to the pre-trained 1D CNN model via REST API endpoints. The model processes the patient data and returns a predicted ESI triage level from 1 (most urgent) to 5 (least urgent).
 
-## Security Vulnerabilities
+### Screenshots
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+[Screenshots will be added here]
 
-## License
+## Installation
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/Emergency-Severity-Triage-Classification-Web
+   ```
+
+2. Install dependencies:
+   ```
+   composer install
+   npm install
+   ```
+
+3. Create and configure the .env file:
+   ```
+   cp .env.example .env
+   ```
+
+4. Generate application key:
+   ```
+   php artisan key:generate
+   ```
+
+5. Configure the database connection in the .env file and run migrations:
+   ```
+   php artisan migrate
+   ```
+
+6. Seed the database with initial data:
+   ```
+   php artisan db:seed
+   ```
+
+7. Configure API connection in .env:
+   ```
+   API_TRIASE=http://your-model-api-url
+   ```
+
+8. Start the development server:
+   ```
+   php artisan serve
+   ```
+
+## Usage
+
+1. Register/login to the application
+2. Enter patient information (demographics and vital signs)
+3. Select applicable chief complaints from the standardized list
+4. Submit to receive triage prediction
+5. Review and validate the triage level as needed
+
+## Related Repositories
+
+This web application is part of a larger research project. The other components can be found at:
+
+- Model Development: [Emergency-Severity-Triage-Classification](https://github.com/hana-ri/Emergency-Severity-Triage-Classification)
+- API Service: [Emergency-Severity-Triage-Classification-API](https://github.com/hana-ri/Emergency-Severity-Triage-Classification-API)
+
+## Research Background
+
+This work is based on research that was published as:
+
+### DESIGN OF A TRIAGE LEVEL CLASSIFICATION APPLICATION FOR IGD PATIENTS USING ONE-DIMENSIONAL CNN ARCHITECTURE
+- **Author**: Mohamad Rizal Hanafi
+- **Published**: 2024/2/25
+- **Institution**: Universitas Pendidikan Indonesia
+
+### Summary
+This research addressed emergency room overcrowding by developing a 5-level ESI triage classification system using 1D CNN architecture. The model achieved 81% accuracy (precision, recall, and f1-score of 0.81), outperforming neural networks (78%), XGBoost (75%), and logistic regression (70%). The resulting web application passed all functional testing requirements.
+
+### Thesis Repository
+[https://repository.upi.edu/120201](https://repository.upi.edu/120201)
